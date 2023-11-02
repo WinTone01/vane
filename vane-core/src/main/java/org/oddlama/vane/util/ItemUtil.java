@@ -20,8 +20,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_20_R1.enchantments.CraftEnchantment;
-import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_20_R2.enchantments.CraftEnchantment;
+import org.bukkit.craftbukkit.v1_20_R2.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -267,7 +267,7 @@ public class ItemUtil {
 	}
 
 	public static ItemStack skull_with_texture(final String name, final String base64_texture) {
-		final var profile = Bukkit.createProfile(SKULL_OWNER);
+		final var profile = Bukkit.createProfileExact(SKULL_OWNER, "-");
 		profile.setProperty(new ProfileProperty("textures", base64_texture));
 
 		final var item = new ItemStack(Material.PLAYER_HEAD);

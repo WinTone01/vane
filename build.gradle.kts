@@ -1,11 +1,11 @@
 plugins {
 	`java-library`
 	id("io.papermc.paperweight.userdev") version "1.5.5"
-	id("xyz.jpenilla.run-paper") version "2.1.0" // Adds runServer and runMojangMappedServer tasks for testing
+	id("xyz.jpenilla.run-paper") version "2.2.0" // Adds runServer and runMojangMappedServer tasks for testing
 }
 
 dependencies {
-	paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+	paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 }
 
 java {
@@ -23,7 +23,7 @@ subprojects {
 	apply(plugin = "java")
 
 	group = "org.oddlama.vane"
-	version = "1.12.3"
+	version = "1.13.1"
 
 	repositories() {
 		mavenCentral()
@@ -53,7 +53,7 @@ configure(subprojects.filter {
 	apply(plugin = "io.papermc.paperweight.userdev")
 
 	dependencies {
-		paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+		paperDevBundle("1.20.2-R0.1-SNAPSHOT")
 	}
 
 	tasks {
@@ -124,8 +124,6 @@ configure(subprojects.filter {
 	dependencies {
 		implementation(group = "us.dynmap", name = "dynmap-api", version = "3.2-SNAPSHOT")
 		implementation(group = "com.github.BlueMap-Minecraft", name = "BlueMapAPI", version = "v2.3.0")
-		implementation(rootProject.project(":vane-plexmap"))
-		compileOnly(group = "maven.modrinth", name = "pl3xmap", version = "1.19.2-310")
 	}
 }
 
