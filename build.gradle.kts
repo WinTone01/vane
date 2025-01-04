@@ -1,11 +1,11 @@
 plugins {
 	`java-library`
-	id("io.papermc.paperweight.userdev") version "1.7.2"
-	id("xyz.jpenilla.run-paper") version "2.3.0" // Adds runServer and runMojangMappedServer tasks for testing
+	id("io.papermc.paperweight.userdev") version "1.7.7"
+	id("xyz.jpenilla.run-paper") version "2.3.1" // Adds runServer and runMojangMappedServer tasks for testing
 }
 
 dependencies {
-	paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+	paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
 }
 
 java {
@@ -23,13 +23,13 @@ subprojects {
 	apply(plugin = "java")
 
 	group = "org.oddlama.vane"
-	version = "1.15.0"
+	version = "1.17.2"
 
 	repositories {
 		mavenLocal()
 		mavenCentral()
-		maven("https://papermc.io/repo/repository/maven-public/")
-		maven("https://repo.dmulloy2.net/nexus/repository/public/")
+		maven("https://repo.papermc.io/repository/maven-public/")
+		maven("https://repo.dmulloy2.net/repository/public/")
 		maven("https://repo.mikeprimm.com/")
 		maven("https://repo.codemc.org/repository/maven-public/")
 		maven("https://jitpack.io")
@@ -43,8 +43,8 @@ subprojects {
 	}
 
 	dependencies {
-		compileOnly(group = "org.jetbrains", name = "annotations", version = "24.1.0")
-		annotationProcessor("org.jetbrains:annotations:24.1.0")
+		compileOnly(group = "org.jetbrains", name = "annotations", version = "26.0.1")
+		annotationProcessor("org.jetbrains:annotations:26.0.1")
 	}
 }
 
@@ -54,8 +54,12 @@ configure(subprojects.filter {
 }) {
 	apply(plugin = "io.papermc.paperweight.userdev")
 
+	tasks.withType<JavaCompile> {
+		options.compilerArgs.addAll(arrayOf("-Xlint:-this-escape"))
+	}
+
 	dependencies {
-		paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+		paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
 	}
 }
 
@@ -99,7 +103,7 @@ configure(subprojects.filter {
 	}
 
 	dependencies {
-		implementation(group = "com.comphenix.protocol", name = "ProtocolLib", version = "5.3.0-SNAPSHOT")
+		implementation(group = "com.comphenix.protocol", name = "ProtocolLib", version = "5.3.0")
 
 		compileOnly(project(":vane-annotations"))
 		annotationProcessor(project(path = ":vane-annotations", configuration = "reobf"))
@@ -137,7 +141,7 @@ configure(subprojects.filter {
 }) {
 	dependencies {
 		implementation(group = "us.dynmap", name = "DynmapCoreAPI", version = "3.7-beta-6")
-		implementation(group = "de.bluecolored.bluemap", name = "BlueMapAPI", version = "2.7.2")
+		implementation(group = "de.bluecolored", name = "bluemap-api", version = "2.7.3")
 	}
 }
 
